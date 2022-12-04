@@ -6,7 +6,7 @@ final class BestFilmsViewController: UIViewController {
   private let refreshController = UIRefreshControl()
   
   private var arrData = [Properties]()
-  
+        
   // MARK: - UIViewController
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,7 +25,7 @@ final class BestFilmsViewController: UIViewController {
     appearance.backgroundColor = .white
     navigationItem.standardAppearance = appearance
     navigationItem.scrollEdgeAppearance = appearance
-    navigationItem.title = "Лучшие фильмы"
+    navigationItem.title = "Лучшее"
   }
   
   private func setupTableView() {
@@ -92,7 +92,7 @@ final class BestFilmsViewController: UIViewController {
   // MARK: - Constraints
   private func setupTableViewConstraints() {
     NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      tableView.topAnchor.constraint(equalTo: view.topAnchor),
       tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)

@@ -25,7 +25,7 @@ final class PopFilmsViewController: UIViewController {
     appearance.backgroundColor = .white
     navigationItem.standardAppearance = appearance
     navigationItem.scrollEdgeAppearance = appearance
-    navigationItem.title = "Популярные фильмы"
+    navigationItem.title = "Популярное"
   }
   
   private func setupTableView() {

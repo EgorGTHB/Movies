@@ -44,13 +44,15 @@ final class DetailsViewController: UIViewController {
     titleLabel.text = titleText
     titleLabel.textAlignment = .center
     titleLabel.textColor = .black
-    titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
+    titleLabel.font = .systemFont(ofSize: 23, weight: .bold)
   }
   
   private func setupOverviewTextView() {
     overviewTextView.text = overview
     overviewTextView.textAlignment = .center
     overviewTextView.textColor = .black
+    overviewTextView.backgroundColor = .white
+
     overviewTextView.font = .systemFont(ofSize: 20)
   }
   
@@ -79,7 +81,7 @@ final class DetailsViewController: UIViewController {
       movieImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
       movieImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
       movieImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-      movieImageView.heightAnchor.constraint(equalToConstant: 420)
+      movieImageView.heightAnchor.constraint(equalToConstant: 350)
     ])
   }
   
@@ -87,8 +89,8 @@ final class DetailsViewController: UIViewController {
     NSLayoutConstraint.activate([
       titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
       titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-      titleLabel.heightAnchor.constraint(equalToConstant: 30),
-      titleLabel.topAnchor.constraint(equalTo: movieImageView.bottomAnchor, constant: 30)
+      titleLabel.heightAnchor.constraint(equalToConstant: 25),
+      titleLabel.topAnchor.constraint(equalTo: movieImageView.bottomAnchor, constant: 10)
     ])
   }
   
@@ -96,8 +98,10 @@ final class DetailsViewController: UIViewController {
     NSLayoutConstraint.activate([
       overviewTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
       overviewTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-      overviewTextView.heightAnchor.constraint(equalToConstant: 200),
-      overviewTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20)
+      overviewTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+      overviewTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10)
+      
+      
     ])
   }
 }

@@ -91,7 +91,7 @@ final class MovieTableViewCell: UITableViewCell {
     NSLayoutConstraint.activate([
       overviewLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10),
       overviewLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-      overviewLabel.heightAnchor.constraint(equalToConstant: 110),
+      overviewLabel.heightAnchor.constraint(equalToConstant: 150),
       overviewLabel.topAnchor.constraint(equalTo:     originalTitleLabel.bottomAnchor, constant: 5)
     ])
   }

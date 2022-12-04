@@ -3,9 +3,8 @@ import UIKit
 final class MoviesTabBarController: UITabBarController {
  
      // MARK: - Private Properties
-    private let bestFilmsViewController = UINavigationController(rootViewController: BestFilmsViewController())
-    private let popFilmsViewController = UINavigationController(rootViewController: PopFilmsViewController())
-
+  private let bestFilmsViewController = UINavigationController(rootViewController: BestFilmsViewController())
+  private let popFilmsViewController = UINavigationController(rootViewController: PopFilmsViewController())
 
     // MARK: - UITabBarController
     override func viewDidLoad() {
@@ -21,7 +20,7 @@ final class MoviesTabBarController: UITabBarController {
     
     private func generateTabBar() {
       viewControllers = [generateVC(viewController: bestFilmsViewController, title: "Лучшие фильмы", image: UIImage(systemName: "film"), tabBarTintColor: .black,                               tabBarUnselectedItemTintColor: .gray),
-      generateVC(viewController: popFilmsViewController, title: "Популярные фильмы", image: UIImage(systemName: "heart"), tabBarTintColor: .black,                               tabBarUnselectedItemTintColor: .gray)]
+                         generateVC(viewController: popFilmsViewController, title: "Популярные фильмы", image: UIImage(systemName: "heart"), tabBarTintColor: .black,                               tabBarUnselectedItemTintColor: .gray)]
     }
     
     private func setupSelfView() {
