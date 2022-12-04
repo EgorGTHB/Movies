@@ -1,6 +1,6 @@
 import Foundation
 
-struct BestFilms: Decodable {
+struct Films: Decodable {
   let results: [Properties]
 }
 

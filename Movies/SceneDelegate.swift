@@ -8,7 +8,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene = scene as? UIWindowScene else { return }
     let myWindow = UIWindow(windowScene: windowScene)
     let navigationController = UINavigationController()
-    let viewController = BestFilmsViewController()
+    let viewController = MoviesTabBarController()
     navigationController.viewControllers = [viewController]
     myWindow.rootViewController = navigationController
     self.window = myWindow

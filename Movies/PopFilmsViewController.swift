@@ -1,6 +1,6 @@
 import UIKit
 
-final class BestFilmsViewController: UIViewController {
+final class PopFilmsViewController: UIViewController {
   // MARK: - Private Properties
   private let tableView = UITableView()
   private let refreshController = UIRefreshControl()
@@ -25,7 +25,7 @@ final class BestFilmsViewController: UIViewController {
     appearance.backgroundColor = .white
     navigationItem.standardAppearance = appearance
     navigationItem.scrollEdgeAppearance = appearance
-    navigationItem.title = "Лучшие фильмы"
+    navigationItem.title = "Популярные фильмы"
   }
   
   private func setupTableView() {
@@ -64,7 +64,7 @@ final class BestFilmsViewController: UIViewController {
   }
   
   func fetchData() {
-    let jsonURL = "https://api.themoviedb.org/3/movie/top_rated?api_key=c5c9b81bfa21c9acc5961d318733ccae&language=ru-RU&page=1"
+    let jsonURL = "https://api.themoviedb.org/3/movie/popular?api_key=c5c9b81bfa21c9acc5961d318733ccae&language=ru-RU&page=1"
     guard let url = URL(string: jsonURL) else { return }
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
       guard let data = data else { return }
@@ -100,7 +100,7 @@ final class BestFilmsViewController: UIViewController {
   }
 }
 
-extension BestFilmsViewController: UITableViewDelegate {
+extension PopFilmsViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let vc = DetailsViewController()
@@ -111,7 +111,7 @@ extension BestFilmsViewController: UITableViewDelegate {
   }
 }
 
-extension BestFilmsViewController: UITableViewDataSource {
+extension PopFilmsViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let movieTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell else { return UITableViewCell() }
