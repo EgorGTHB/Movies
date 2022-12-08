@@ -63,8 +63,7 @@ final class MovieTableViewCell: UITableViewCell {
   
   //MARK: - Public Methods
   func configureCell(model: MovieModel) {
-    movieImageView.kf.setImage(with: URL(string:  model.url), placeholder: nil, options: [.transition(.fade(1))], progressBlock: nil)
-    
+    movieImageView.kf.setImage(with: URL(string:  model.url), placeholder: UIImage(systemName: "photo"), options: [.transition(.fade(1))], progressBlock: nil)
     originalTitleLabel.text = model.title
     overviewLabel.text = model.overview
   }
