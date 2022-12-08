@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 final class DetailsViewController: UIViewController {
   // MARK: - Private Properties
@@ -67,15 +68,8 @@ final class DetailsViewController: UIViewController {
   
   private func network() {
     guard let image = detail?.image else { return } 
-    guard let path = URL(string: "https://image.tmdb.org/t/p/original\(image)") else { return }
-    let task = URLSession.shared.dataTask(with: path) {
-      (data, response, error) in
-      guard let data = data else { return }
-      DispatchQueue.main.async {
-        self.movieImageView.image = UIImage(data: data)
-      }
-    }
-    task.resume()
+    let url = "https://image.tmdb.org/t/p/original\(image)"
+    movieImageView.kf.setImage(with: URL(string: url), placeholder: UIImage(systemName: "photo"), options: nil, progressBlock: nil)
   }
   
   //MARK: - Constraints
