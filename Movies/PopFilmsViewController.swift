@@ -63,7 +63,7 @@ final class PopFilmsViewController: UIViewController {
     fetchData()
   }
   
-  func fetchData() {
+  private func fetchData() {
     let jsonURL = "https://api.themoviedb.org/3/movie/popular?api_key=c5c9b81bfa21c9acc5961d318733ccae&language=ru-RU&page=1"
     guard let url = URL(string: jsonURL) else { return }
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -100,30 +100,26 @@ final class PopFilmsViewController: UIViewController {
   }
 }
 
+// MARK: - UITableViewDelegate
 extension PopFilmsViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let vc = DetailsViewController()
-    vc.image = arrData[indexPath.row].posterPath
-    vc.titleText = arrData[indexPath.row].title
-    vc.overview = arrData[indexPath.row].overview
+    vc.detail = DetailModel(image: arrData[indexPath.row].posterPath, titleText: arrData[indexPath.row].title, overview: arrData[indexPath.row].overview)
     navigationController?.pushViewController(vc, animated: true)
   }
 }
 
+// MARK: - UITableViewDataSource
 extension PopFilmsViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let movieTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell else { return UITableViewCell() }
-    guard let path = URL(string: "https://image.tmdb.org/t/p/original\(arrData[indexPath.row].posterPath)") else { return UITableViewCell() }
-    URLSession.shared.dataTask(with: path) {
-      (data, response, error) in
-      guard let data = data else { return }
-      DispatchQueue.main.async {
-        let model = MovieModel(movie: data, title: self.arrData[indexPath.row].title, overview: self.arrData[indexPath.row].overview)
+      let url =  "https://image.tmdb.org/t/p/original\(arrData[indexPath.row].posterPath)"
+  
+        let model = MovieModel(url: url, title: self.arrData[indexPath.row].title, overview: self.arrData[indexPath.row].overview)
         movieTableViewCell.configureCell(model: model)
-      }
-    }.resume()
+ 
     return movieTableViewCell
   }
   

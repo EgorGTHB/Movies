@@ -1,7 +1,7 @@
 import Foundation
 
 struct MovieModel {
-  let movie: Data
+  let url: String
   let title: String
   let overview: String
 }

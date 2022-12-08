@@ -1,11 +1,12 @@
 import UIKit
+import Kingfisher
 
 final class MovieTableViewCell: UITableViewCell {
   //MARK: - Private Properties
-   let movieImageView = UIImageView()
-   let originalTitleLabel = UILabel()
-   let overviewLabel = UILabel()
- 
+  private let movieImageView = UIImageView()
+  private let originalTitleLabel = UILabel()
+  private let overviewLabel = UILabel()
+  
   // MARK: - UICollectionViewCell
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -62,7 +63,8 @@ final class MovieTableViewCell: UITableViewCell {
   
   //MARK: - Public Methods
   func configureCell(model: MovieModel) {
-    movieImageView.image = UIImage(data: model.movie)
+    movieImageView.kf.setImage(with: URL(string:  model.url), placeholder: nil, options: [.transition(.fade(1))], progressBlock: nil)
+    
     originalTitleLabel.text = model.title
     overviewLabel.text = model.overview
   }
@@ -89,10 +91,7 @@ final class MovieTableViewCell: UITableViewCell {
   
   private func setupOverviewLabelConstraint() {
     NSLayoutConstraint.activate([
-      overviewLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10),
-      overviewLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-      overviewLabel.heightAnchor.constraint(equalToConstant: 150),
-      overviewLabel.topAnchor.constraint(equalTo:     originalTitleLabel.bottomAnchor, constant: 5)
+      overviewLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10), overviewLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20), overviewLabel.heightAnchor.constraint(equalToConstant: 150), overviewLabel.topAnchor.constraint(equalTo: originalTitleLabel.bottomAnchor, constant: 5)
     ])
   }
 }

@@ -7,10 +7,8 @@ final class DetailsViewController: UIViewController {
   private let overviewTextView = UITextView()
   
   // MARK: - Public Properties
-  var image = String()
-  var titleText = String()
-  var overview = String()
-  
+  var detail: DetailModel?
+
   // MARK: - UIViewController
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,15 +21,6 @@ final class DetailsViewController: UIViewController {
   }
   
   private func setupMovieImageView() {
-    guard let path = URL(string: "https://image.tmdb.org/t/p/original\(image)") else { return }
-   let task = URLSession.shared.dataTask(with: path) {
-      (data, response, error) in
-      guard let data = data else { return }
-      DispatchQueue.main.async {
-        self.movieImageView.image = UIImage(data: data)
-      }
-    }
-    task.resume()
     movieImageView.layer.cornerRadius = 20
     movieImageView.layer.masksToBounds = true
     movieImageView.contentMode = .scaleAspectFit
@@ -41,14 +30,14 @@ final class DetailsViewController: UIViewController {
   }
   
   private func setupTitleLabel() {
-    titleLabel.text = titleText
+    titleLabel.text = detail?.titleText
     titleLabel.textAlignment = .center
     titleLabel.textColor = .black
     titleLabel.font = .systemFont(ofSize: 23, weight: .bold)
   }
   
   private func setupOverviewTextView() {
-    overviewTextView.text = overview
+    overviewTextView.text = detail?.overview
     overviewTextView.textAlignment = .center
     overviewTextView.textColor = .black
     overviewTextView.backgroundColor = .white
@@ -58,6 +47,7 @@ final class DetailsViewController: UIViewController {
   
   //MARK: - Private Methods
   private func setupView() {
+    network()
     setupMovieImageView()
     setupTitleLabel()
     setupOverviewTextView()
@@ -73,6 +63,19 @@ final class DetailsViewController: UIViewController {
       view.addSubview($0)
       $0.translatesAutoresizingMaskIntoConstraints = false
     }
+  }
+  
+  private func network() {
+    guard let image = detail?.image else { return } 
+    guard let path = URL(string: "https://image.tmdb.org/t/p/original\(image)") else { return }
+    let task = URLSession.shared.dataTask(with: path) {
+      (data, response, error) in
+      guard let data = data else { return }
+      DispatchQueue.main.async {
+        self.movieImageView.image = UIImage(data: data)
+      }
+    }
+    task.resume()
   }
   
   //MARK: - Constraints
@@ -100,8 +103,6 @@ final class DetailsViewController: UIViewController {
       overviewTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
       overviewTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
       overviewTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10)
-      
-      
     ])
   }
 }
