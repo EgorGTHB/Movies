@@ -24,10 +24,9 @@ final class DetailsViewController: UIViewController {
   private func setupMovieImageView() {
     movieImageView.layer.cornerRadius = 20
     movieImageView.layer.masksToBounds = true
-    movieImageView.contentMode = .scaleAspectFit
+    movieImageView.contentMode = .scaleAspectFill
     movieImageView.layer.borderWidth = 1
     movieImageView.layer.borderColor = UIColor.gray.cgColor
-    movieImageView.contentMode = .scaleAspectFill
   }
   
   private func setupTitleLabel() {
@@ -77,7 +76,7 @@ final class DetailsViewController: UIViewController {
     NSLayoutConstraint.activate([
       movieImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
       movieImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-      movieImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+      movieImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide .topAnchor, constant: 10),
       movieImageView.heightAnchor.constraint(equalToConstant: 350)
     ])
   }
